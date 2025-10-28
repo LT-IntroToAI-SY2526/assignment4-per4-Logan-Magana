@@ -9,10 +9,10 @@ class TTTBoard:
         board - a list of '*'s, 'X's & 'O's. 'X's represent moves by player 'X', 'O's
             represent moves by player 'O' and '*'s are spots no one has yet played on
     """
-    def __init__(self, *, O, X):
-        self.* = *
-        self.O = O
-        self.X = X
+    def __init__(self):
+        self.board= ["*"] * 9
+    def __str__(self):
+         return f"{self.board[0:2]}\n {self.board[3:5]}\n {self.board[6:8]}"
         
     
 
@@ -65,6 +65,7 @@ if __name__ == "__main__":
     # need to write some more tests to make sure that your TTTBoard class is behaving
     # properly.
     brd = TTTBoard()
+    print(brd.board)
     brd.make_move("X", 8)
     brd.make_move("O", 7)
 
