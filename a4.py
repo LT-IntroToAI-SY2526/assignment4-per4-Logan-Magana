@@ -12,11 +12,25 @@ class TTTBoard:
     def __init__(self):
         self.board= ["*"] * 9
     def __str__(self):
-         return f"{''.join(self.board[0:3])}\n{''.join(self.board[3:6])}\n{''.join(self.board[6:9])}"
+         return f"{' '.join(self.board[0:3])}\n{' '.join(self.board[3:6])}\n{' '.join(self.board[6:9])}"
         
+    def make_move(self,player,pos):
+        if 0 <= pos <= 8 and self.board[pos] == '*':
+            self.board[pos] = player
+            return True
+        return False
+
+    def has_won(self,player):
+       winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+       for combo in winning_combinations:
+            if self.board[combo[0]] == self.board[combo[1]] == self.board[combo[2]] == player:
+                return True
+       return False
+    def game_over(self):
+        return self.has_won("X") or self.has_won("O") or '*' not in self.board
     
-
-
+    def clear(self):
+        self.board = ["*"] * 9
 def play_tic_tac_toe() -> None:
     """Uses your class to play TicTacToe"""
 
